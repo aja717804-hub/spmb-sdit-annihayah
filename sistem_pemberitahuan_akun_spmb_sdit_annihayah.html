@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemberitahuan Akun Login Siswa SDIT ANNIHAYAH - SPMB 2026/2027</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-green-50 text-gray-800 min-h-screen flex flex-col selection:bg-green-200">
+
+    <!-- LAYOUT PEMBATASAN WAKTU (AKAN DITAMPILKAN JIKA DI LUAR JAM 07:00 - 21:00) -->
+    <div id="time-lock-screen" class="hidden min-h-screen bg-green-50 flex items-center justify-center p-4">
+        <div class="bg-white max-w-md w-full rounded-2xl shadow-xl p-8 text-center border-t-8 border-green-600">
+            <i data-lucide="clock" class="w-20 h-20 text-green-600 mx-auto mb-6 animate-pulse"></i>
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Akses Tertutup</h1>
+            <p class="text-lg text-red-600 font-semibold bg-red-50 p-4 rounded-lg border border-red-200">
+                pemberitahuan belum dimulai harap di cek sesuai waktu yang telah ditentukan
+            </p>
+            <p class="text-gray-600 mt-4 text-sm">
+                Layanan ini hanya dapat diakses pada jam kerja: <br>
+                <span class="font-bold text-green-700 text-lg">07:00 - 21:00 WIB</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- APLIKASI UTAMA (AKAN DITAMPILKAN JIKA DALAM JAM AKSES) -->
+    <div id="main-app" class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-green-700 text-white shadow-lg sticky top-0 z-50">
+            <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white p-2 rounded-full">
+                        <i data-lucide="user" class="text-green-700 w-6 h-6"></i>
+                    </div>
+                    <h1 class="font-bold text-xl tracking-tight">SDIT ANNIHAYAH</h1>
+                </div>
+                <div class="text-sm font-medium opacity-90 flex items-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4"></i>
+                    07:00 - 21:00 WIB
+                </div>
+            </div>
+        </header>
+
+        <!-- Konten Utama -->
+        <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+            
+            <!-- HALAMAN UTAMA (SAMBUTAN) -->
+            <div id="home-view" class="animate-fade-in">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-green-100">
+                    <div class="bg-green-600 p-8 text-center text-white">
+                        <h2 class="text-2xl md:text-3xl font-extrabold leading-tight mb-2">
+                            PEMBERITAHUAN AKUN LOGIN SISWA
+                        </h2>
+                        <h3 class="text-lg md:text-xl font-medium text-green-100">
+                            SDIT ANNIHAYAH UNTUK SPMB KE SMP
+                        </h3>
+                    </div>
+                    
+                    <div class="p-8 md:p-10">
+                        <div class="mb-8">
+                            <h4 class="text-lg font-bold text-green-800 mb-4 border-b-2 border-green-200 pb-2 inline-block">
+                                Sambutan Kepala Sekolah
+                            </h4>
+                            <div class="text-gray-700 leading-relaxed text-justify space-y-4 text-sm md:text-base">
+                                <p>
+                                    Assalamu'alaikum Warahmatullahi Wabarakatuh. Puji syukur senantiasa kita panjatkan ke hadirat Allah SWT atas segala rahmat dan hidayah-Nya. Shalawat serta salam semoga tercurah kepada junjungan kita Nabi Muhammad SAW.
+                                </p>
+                                <p>
+                                    Dalam rangka persiapan Seleksi Penerimaan Murid Baru (SPMB) ke jenjang Sekolah Menengah Pertama (SMP) Tahun Ajaran 2026/2027, dengan ini kami sampaikan bahwa akun login peserta didik SDIT ANNIHAYAH telah dapat diakses. Akun ini merupakan instrumen penting dan bersifat rahasia yang akan digunakan oleh masing-masing siswa untuk melakukan proses pendaftaran secara daring (online).
+                                </p>
+                                <p>
+                                    Kami menghimbau kepada seluruh orang tua/wali murid agar mendampingi putra-putrinya dalam melakukan pengecekan akun dan menjaga kerahasiaan password yang diberikan. Semoga seluruh tahapan SPMB ini berjalan dengan lancar dan putra-putri kita tercinta mendapatkan hasil yang terbaik demi masa depan pendidikan mereka.
+                                </p>
+                                <p>
+                                    Wassalamu'alaikum Warahmatullahi Wabarakatuh.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-10">
+                            <button
+                                onclick="switchView('search')"
+                                class="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                            >
+                                <i data-lucide="lock" class="w-5 h-5"></i>
+                                Cek Password Sekarang
+                            </button>
+                            <p class="mt-4 text-sm text-gray-500">
+                                Siapkan Nama atau NISN Siswa untuk melakukan pengecekan.
+                              </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HALAMAN PENCARIAN (CEK PASSWORD) -->
+            <div id="search-view" class="hidden animate-fade-in">
+                <button
+                    onclick="switchView('home')"
+                    class="mb-6 flex items-center gap-2 text-green-700 hover:text-green-800 font-semibold transition-colors"
+                >
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    Kembali ke Beranda
+                </button>
+
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-green-100 p-6 md:p-10">
+                    <div class="text-center mb-8">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="search" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800">Cek Akun SPMB</h2>
+                        <p class="text-gray-500 mt-2 text-sm md:text-base">Masukkan Nama Siswa atau NISN untuk melihat kredensial login Anda.</p>
+                    </div>
+
+                    <form id="search-form" onsubmit="handleSearch(event)" class="max-w-xl mx-auto mb-10">
+                        <div class="flex flex-col md:flex-row gap-3">
+                            <input
+                                id="search-input"
+                                type="text"
+                                placeholder="Contoh: 3146403579 atau Nama Lengkap"
+                                class="flex-1 px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-lg transition-shadow shadow-sm"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2"
+                            >
+                                <i data-lucide="search" class="w-5 h-5"></i>
+                                Cari
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Tempat Munculnya Hasil Pencarian -->
+                    <div id="result-container" class="max-w-2xl mx-auto"></div>
+                </div>
+            </div>
+
+        </main>
+        
+        <!-- Footer -->
+        <footer class="mt-auto py-6 text-center text-gray-500 text-sm border-t border-green-100 bg-white">
+            <p>&copy; 2026 SDIT ANNIHAYAH. All rights reserved.</p>
+            <p class="mt-1">Sistem Pemberitahuan Akun SPMB Kabupaten Karawang.</p>
+        </footer>
+    </div>
+
+    <!-- DATA DAN LOGIKA JAVASCRIPT -->
+    <script>
+        // Database Siswa
+        const studentsData = [
+            { nama: "ABDULLAH MUZZAMMIL SIDIQ", nisn: "3146403579", password: "HYR4dK8z*" },
+            { nama: "AFIFAH FAKHIRAH SHAKILA", nisn: "3133033411", password: "awEfx4cL*" },
+            { nama: "AKBAR MAULANA RAMADHAN", nisn: "0138122770", password: "S4mAXqZn*" },
+            { nama: "ALIKA AFIFATUL AISYAH", nisn: "3149327444", password: "cWJSB7Ts*" },
+            { nama: "ALLEA AZZAHRA SOPIAN PUTRI", nisn: "3138019015", password: "yFa2kqbn*" },
+            { nama: "ALMEERA OKTAVIANI", nisn: "3132072859", password: "s4AwpcFU*" },
+            { nama: "ALYA NAOMI SAHARA", nisn: "3146037802", password: "hsFyz6Nq*" },
+            { nama: "ANDROMEDA ANGGITA BAYU LAKSANA", nisn: "0136119835", password: "3BhVDK6n*" },
+            { nama: "AQILAH AZKA BUSTOMI", nisn: "3131312028", password: "69JeCqcn*" },
+            { nama: "AZKA BUDIMAN", nisn: "0134623078", password: "xs5uV6f9*" },
+            { nama: "AZZRA MAHESA REVALDO", nisn: "3136764206", password: "gdmwfs5a*" },
+            { nama: "BIANCA ADHINA PUTRI", nisn: "3136753196", password: "f5wumr9d*" },
+            { nama: "DAFFA NAUFAL ALGHIFARI", nisn: "0146771632", password: "Z72JWzcy*" },
+            { nama: "DAFFA RIFQI AISY SOFYAN", nisn: "3136721253", password: "eKUzXrAb*" },
+            { nama: "DAUD AZKA LUGINA", nisn: "3145043583", password: "HhfDJt7q*" },
+            { nama: "DEANDRA AHMAD PRAJA", nisn: "0142682864", password: "hGQzWNVH*" },
+            { nama: "DELENA PUTRI", nisn: "3134087491", password: "VsC5p3JE*" },
+            { nama: "DZULFA KHAIRUNISA NUR FAHMI", nisn: "0142239224", password: "WH2XBuge*" },
+            { nama: "DZULPHADANIAL", nisn: "0133655336", password: "KpMxmvTb*" },
+            { nama: "FAHRI NURDIAN SYAH", nisn: "0144943722", password: "VsJh3xnR*" },
+            { nama: "FALIH FRASSETIYA SULAIMAN", nisn: "3123678731", password: "dr4BDecp*" },
+            { nama: "FATHAN NATA ALAMSYAH", nisn: "3141628304", password: "jusb89T6*" },
+            { nama: "FAUZIA RAFIFA", nisn: "3136500259", password: "5pc9FuxU*" },
+            { nama: "FIZAH RANIA PUTRI", nisn: "0136290134", password: "4S9sEknz*" },
+            { nama: "GEMA BAWAZIR", nisn: "0148536090", password: "LnPcAykf*" },
+            { nama: "HANDI RASYIDIN", nisn: "0134596070", password: "Mjx2mtS5*" },
+            { nama: "INDIRA RAHAYU PRAMUDIANA", nisn: "3136240037", password: "rvyS5b46*" },
+            { nama: "JENAL AGUSTIAN", nisn: "0132882470", password: "K5rHGDEX*" },
+            { nama: "KHANSA NAZIHA BILQIS", nisn: "0137019907", password: "bAP49z3F*" },
+            { nama: "LARISSA DIANTI PUTRI", nisn: "0142927506", password: "RjPsrFfT*" },
+            { nama: "MUHAMAD ARSYAD ZAIDAN", nisn: "3139003916", password: "ydp4D5af*" },
+            { nama: "MUHAMAD NAHWAN AKMAL", nisn: "3135022657", password: "pCMysQcP*" },
+            { nama: "MUHAMMAD ARTHUR ABRISAM", nisn: "0138782761", password: "SFNprTuH*" },
+            { nama: "MUHAMMAD NAUFAL AIDAN SYAHM", nisn: "0131880192", password: "spHPXTdW*" },
+            { nama: "MUHAMMAD ROOFI TAUFIK", nisn: "3142506159", password: "6RA2YmpQ*" },
+            { nama: "NABIL AZMI AUFA RAMADHAN", nisn: "0138516626", password: "kvREHe8A*" },
+            { nama: "NAYLA HANUN", nisn: "3132769426", password: "prtFfPJg*" },
+            { nama: "NENG HADYANA NAYLA ZULFA HIDAYAT", nisn: "3149372460", password: "gXfrxcG3*" },
+            { nama: "NINDYA SALSABILA ZHAFIRA","nisn": "0135275176", password: "8ajFG3tA*" },
+            { nama: "NURMAYA MAULIDA", nisn: "0147157033", password: "R8vPEHSe*" },
+            { nama: "RAFFAEL JULIANO KURNIAWAN", nisn: "3136162162", password: "yBG2H7aQ*" },
+            { nama: "RASYA FADILAH RADIYANTO", nisn: "3130391858", password: "Dkx9URsL*" },
+            { nama: "RATU AULIA IZZATUNNISA", nisn: "3132985331", password: "7T6WZFth*" },
+            { nama: "RIZAL HADIZAN WIGUNA", nisn: "3131642898", password: "8Dpf2SAM*" },
+            { nama: "RIZFHA PUTRY RANNISHA", nisn: "3139698158", password: "KRbVL4a7*" },
+            { nama: "RYU ZULFIKAR FAIRUZ", nisn: "3131156451", password: "DndJFTWN*" },
+            { nama: "SHINTA MAHARANI", nisn: "3140224293", password: "N8JwTX9c*" },
+            { nama: "SITI AKIFA NAILA WAHYUDI", nisn: "3141312869", password: "USnaBDbq*" },
+            { nama: "SITI NUR ASYIPA", nisn: "0135435191", password: "fWLsCJze*" },
+            { nama: "SUBAN BASTIAN", nisn: "0132067069", password: "3UcXQu9x*" },
+            { nama: "SYABILA RAHMA PRATILAH", nisn: "0131301675", password: "2Fyqt3Xh*" },
+            { nama: "SYAQILLA AULIA HIDAYAT", nisn: "0139254763", password: "UvQbMCca*" },
+            { nama: "TSAMARA AISYAH UFAIRAH AZKIYA", nisn: "0138414926", password: "TE34U5tb*" },
+            { nama: "YASMINE ADELIA", nisn: "3136130013", password: "UZj987B4*" },
+            { nama: "ZAFIRAH AQMAR", nisn: "0137786748", password: "Zu8e4Uax*" },
+            { nama: "ZAHRA NUR FAHIRA", nisn: "0134736644", password: "fW9g6Lm7*" }
+        ];
+
+        // Memeriksa Waktu Operasional (07:00 - 21:00 WIB)
+        function checkTime() {
+            const currentHour = new Date().getHours();
+            const isAllowed = currentHour >= 7 && currentHour < 21;
+
+            const lockScreen = document.getElementById('time-lock-screen');
+            const mainApp = document.getElementById('main-app');
+
+            if (isAllowed) {
+                lockScreen.classList.add('hidden');
+                mainApp.classList.remove('hidden');
+            } else {
+                lockScreen.classList.remove('hidden');
+                mainApp.classList.add('hidden');
+            }
+        }
+
+        // Navigasi Halaman
+        function switchView(viewName) {
+            const homeView = document.getElementById('home-view');
+            const searchView = document.getElementById('search-view');
+            
+            if (viewName === 'home') {
+                homeView.classList.remove('hidden');
+                searchView.classList.add('hidden');
+                document.getElementById('search-input').value = '';
+                document.getElementById('result-container').innerHTML = '';
+            } else {
+                homeView.classList.add('hidden');
+                searchView.classList.remove('hidden');
+            }
+        }
+
+        // Pencarian Akun
+        function handleSearch(event) {
+            event.preventDefault();
+            const inputVal = document.getElementById('search-input').value.trim();
+            const resultContainer = document.getElementById('result-container');
+            
+            if (!inputVal) return;
+
+            // Jika kata kunci adalah ADMIN / admin
+            if (inputVal.toLowerCase() === 'admin') {
+                let tableRows = '';
+                studentsData.forEach((student, index) => {
+                    tableRows += `
+                        <tr class="hover:bg-green-50 transition-colors border-b border-gray-100">
+                            <td class="p-3 text-sm text-gray-500">${index + 1}</td>
+                            <td class="p-3 text-sm font-medium text-gray-800">${student.nama}</td>
+                            <td class="p-3 text-sm text-gray-600 font-mono">${student.nisn}</td>
+                            <td class="p-3 text-sm text-green-700 font-mono font-medium">${student.password}</td>
+                        </tr>
+                    `;
+                });
+
+                resultContainer.innerHTML = `
+                    <div class="mt-6 animate-fade-in">
+                        <div class="flex items-center gap-3 mb-4 bg-gray-800 text-white p-4 rounded-xl">
+                            <i data-lucide="shield-alert" class="w-6 h-6 text-yellow-400"></i>
+                            <h3 class="text-base font-bold">Akses Administrator (Data Seluruh Siswa)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+                            <table class="w-full text-left border-collapse bg-white">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700 border-b border-gray-200">
+                                        <th class="p-3 text-sm font-bold">No</th>
+                                        <th class="p-3 text-sm font-bold">Nama Siswa</th>
+                                        <th class="p-3 text-sm font-bold">NISN</th>
+                                        <th class="p-3 text-sm font-bold">Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${tableRows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            // Pencarian nama atau NISN
+            const student = studentsData.find(s => 
+                s.nisn === inputVal || 
+                s.nama.toLowerCase().includes(inputVal.toLowerCase())
+            );
+
+            if (student) {
+                resultContainer.innerHTML = `
+                    <div class="mt-6 animate-fade-in bg-gradient-to-br from-green-50 to-white p-6 md:p-8 rounded-3xl border border-green-200 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-6 opacity-10">
+                            <i data-lucide="lock" class="w-32 h-32 text-green-600 transform rotate-12"></i>
+                        </div>
+                        
+                        <div class="relative z-10 flex items-center gap-3 mb-6">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-green-600"></i>
+                            <h3 class="text-xl font-bold text-gray-800">Data Akun Ditemukan!</h3>
+                        </div>
+
+                        <div class="space-y-4 relative z-10">
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-2">
+                                <span class="text-gray-500 font-medium">Nama Siswa</span>
+                                <span class="font-bold text-gray-900 text-right text-lg">${student.nama}</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-2">
+                                <span class="text-gray-500 font-medium">NISN (Username)</span>
+                                <span class="font-bold text-blue-700 text-xl font-mono">${student.nisn}</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-green-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-2 ring-1 ring-green-100">
+                                <span class="text-gray-500 font-medium">Password Login</span>
+                                <span class="font-bold text-green-700 text-xl font-mono bg-green-50 px-3 py-1 rounded-lg">${student.password}</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-green-200 space-y-4 relative z-10">
+                            <div class="bg-blue-50 text-blue-800 p-4 rounded-xl border border-blue-100 flex gap-3 items-start text-left">
+                                <i data-lucide="alert-circle" class="w-6 h-6 flex-shrink-0 mt-0.5 text-blue-600"></i>
+                                <div>
+                                    <p class="font-bold mb-1">Penting:</p>
+                                    <p class="text-sm">
+                                        Masukan NISN dan Password di atas untuk login SPMB. <br>
+                                        Akun ini digunakan untuk login SPMB online ke SMP wilayah Kabupaten Karawang.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a 
+                                href="http://spmb.karawangkab.go.id" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-colors shadow-md mt-4"
+                            >
+                                <i data-lucide="link" class="w-5 h-5"></i>
+                                Buka Website SPMB Karawang
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultContainer.innerHTML = `
+                    <div class="mt-6 bg-red-50 text-red-700 p-6 rounded-2xl border border-red-200 flex flex-col items-center text-center animate-fade-in">
+                        <i data-lucide="alert-circle" class="w-12 h-12 mb-3 text-red-500"></i>
+                        <h3 class="font-bold text-lg mb-1">Gagal Menemukan Data</h3>
+                        <p>Nama/NISN Tidak ditemukan, harap cek kembali Nama/NISN Anda</p>
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // Memulai pengecekan waktu dan inisialisasi ikon saat pertama kali dibuka
+        window.onload = function() {
+            checkTime();
+            lucide.createIcons();
+            // Lakukan pengecekan waktu berkala setiap 1 menit
+            setInterval(checkTime, 60000);
+        };
+    </script>
+</body>
+</html>
